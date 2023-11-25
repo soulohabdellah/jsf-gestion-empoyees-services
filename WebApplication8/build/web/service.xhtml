@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <p:panel header="Gestion des services">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Id :"></p:outputLabel>
+                    <p:inputText value="#{serviceBean.service.id}"></p:inputText>
+                    <p:outputLabel value="Nom :"></p:outputLabel>
+                    <p:inputText value="#{serviceBean.service.nom}"></p:inputText>
+                    <p:commandButton value="Creer" actionListener="#{serviceBean.onCreateAction()}" update=":f"></p:commandButton>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+        <h:form id="f">
+            <p:panel header="Liste des services">
+                <p:dataTable id="services" var="s" value="#{serviceBean.services}">
+                    <p:column filterBy="#{s.id}" headerText="Id">
+                        <p:outputLabel value="#{s.id}"></p:outputLabel>
+                    </p:column>
+                    <p:column sortBy="#{s.nom}" headerText="Nom">
+                        <p:outputLabel value="#{s.nom}"></p:outputLabel>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
